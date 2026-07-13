@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap');
+:root {
+  --bg-dark: #050814;      /* Fond principal très sombre */
+  --bg-card: #0B1120;      /* Fond des cartes / navbar légèrement plus clair */
+  --gradient-purple-1: #6366F1; /* Violet-bleu du gros cercle */
+  --gradient-purple-2: #4C1D95; /* Violet foncé du gros cercle */
+  --accent-btn: #6366F1;   /* Bouton "View My Work" et "Hire Me" */
+  --text-white: #FFFFFF;
+  --text-gray: #9CA3AF;    /* Texte secondaire "I'm a passionate..." */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+   font-family: 'Inter', sans-serif;
+   border-bottom: 1px solid black;
+   background-color: var(--bg-card);
+}
+header nav{
+    display: flex;
+    gap: 20px;
+}
+header nav a{
+    text-decoration: none;
+    color: var(--text-white);
+}
+header nav a:hover{
+    text-decoration:underline;
+}
+.logo{
+     font-family: 'Poppins', sans-serif;
+     font-size: 20px;
+     color: var(--text-white);
+}
+header button{
+    height: 30px;
+    width: 120px;
+    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+      color: var(--text-white);
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.hero{
+    height: 100vh;
+}
+.container{
+    display: flex;
+ 
+}
+.text{
+    font-weight: 400;
+    font-size: 50px;
+    overflow: hidden;
+}
+.typing{
+    margin-left: 15px;
+    height: 70px;
+    overflow: hidden;
+}
+.typing li {
+    list-style: none;
+    font-weight: 500;
+    font-size: 55px;
+    color: #4F46E5;
+    position: relative;
+    top: 0;
+    margin-bottom: 1.7rem;
+    animation: writing 10s steps(4) infinite; 
+}
+@keyframes writing{
+    100%{
+        top:-360px;
+    }
+}
+
+.typing li span{
+    position: relative;
+}
+.typing li span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid #4F46E5;
+    background: white;
+    animation: typing 5s steps(30) infinite;
+}
+@keyframes typing{
+    40%,60%{
+        left:calc(100% + 30px) ;
+    }
+    100%{
+        left: 0;
+    }
+}
+
