@@ -14,20 +14,20 @@
             <img src="" alt="">
             <span>Samuel Yoka</span>
         </div>
-        <nav><a href="">Acceuille</a>
-            <a href="">A propos de moi</a>
-            <a href="">Projet</a>
-             <a href="">Me contacter</a>
+        <nav><a href="#acceuille">Acceuille</a>
+            <a href="#moi">A propos de moi</a>
+            <a href="#projet">Projet</a>
+             <a href="#contacte">Me contacter</a>
            
         </nav>
-        <button>MOI</button>
+       <a href="#moi"> <button >MOI</button></a>
     </header>
     <section class="hero"> 
         <div class="hero-contenair">
         <span class="badge">Je suis un developeur web</span>
           <div class="container">
                 <div class="text">Je m'appelle  samuel Yoka</div>
-                <ul class="typing">
+                <ul class="typing" id="acceuille">
                     <li><span>Developeur Web</span></li>
                     <li><span>Administration reseaux</span></li>
                     <li><span>Designeur Web</span></li>
@@ -37,7 +37,7 @@
             <p>je suis pationner du development web specialiste en construction <br> des expereience digital exceptional avec les tehcnologie moderne </p>
             <div class="button">
                 <button class="bnt1">Mon travaile</button>
-                <button class="bnt2" >Mon Cv</button>
+                <a href="img/Samuel Yoka.pdf"><button class="bnt2"  >Mon Cv</button></a>
             </div>
             <div class="techs">
     <p>TECHNOLOGIES ET OUTILS AVEC LESQUELLES JE TRAVAILLE</p>
@@ -70,7 +70,7 @@
         <div class="propos-text">
             <span class="badge">À PROPOS DE MOI</span>
             <h2>Étudiant en Licence 2 SIGL & Développeur Web passionné</h2>
-            <p>
+            <p id="moi">
                 Je m'appelle Samuel Yoka, étudiant en Licence 2 de Système Informatique et Génie Logiciel. 
                 Je suis passionné par le développement web et la création d'expériences digitales modernes.
             </p>
@@ -78,7 +78,7 @@
                 J'aime transformer des idées en sites web concrets. Mon objectif : construire des interfaces 
                 propres, rapides et responsives avec les technologies du moment comme HTML, CSS et javaScript.
             </p>
-             <button class="bnt1">Télécharger mon CV</button>
+             <a href="img/Samuel Yoka.pdf"><button class="bnt1">Télécharger mon CV</button></a>
         </div>
         </section>
 
@@ -90,7 +90,7 @@
 
              <div class="project-card">
 
-                <div class="project-img">
+                <div class="project-img" id="projet">
                    
                     <img src="img/4.jpg" alt="Douceur Sucrée">
                 </div>
@@ -98,7 +98,7 @@
                 <div class="project-content">
                     <h3>Douceur Sucrée</h3>
                     <p>Site e-commerce pour une pâtisserie avec menu et commande en ligne.</p>
-                    <a href="#" class="project-link">Voir le  Project <span>→</span></a>
+                    <a href=" https://samuelakombo0-bit.github.io/Burger-King/" class="project-link">Voir le  Project <span>→</span></a>
                 </div>
 
             </div>
@@ -111,7 +111,7 @@
                 <div class="project-content">
                     <h3>Portfolio Perso</h3>
                     <p>Mon portfolio développeur avec animations et design moderne.</p>
-                    <a href="#" class="project-link">Voir le  Project <span>→</span></a>
+                    <a href=" https://samuelakombo0-bit.github.io/Portofolio/" class="project-link">Voir le  Project <span>→</span></a>
                 </div>
             </div>
             <!-- projet 3 -->
@@ -123,7 +123,7 @@
                 <div class="project-content">
                     <h3>Shot Studio</h3>
                     <p>Site vitrine pour un studio photo avec galerie et prise de rendez-vous.</p>
-                    <a href="#" class="project-link">Voir le Project<span>→</span></a>
+                    <a href=" https://samuelakombo0-bit.github.io/ShotStudiot/" class="project-link">Voir le Project<span>→</span></a>
                 </div>
             </div>
              
@@ -147,7 +147,7 @@
             <!-- Colonne Gauche : Formulaire -->
             <form class="contact-form" action="https://formspree.io/f/mqerwaeo" method="POST">
     <div class="form-group">
-        <input type="text" name="nom" placeholder="Votre Nom" required> <!-- AJOUTE name="nom" -->
+        <input type="text" id="contacte" name="nom" placeholder="Votre Nom" required> <!-- AJOUTE name="nom" -->
     </div>
     <div class="form-group">
         <input type="email" name="email" placeholder="Votre Email" required>
