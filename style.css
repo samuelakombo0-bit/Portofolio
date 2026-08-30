@@ -8,6 +8,15 @@
   --text-white: #FFFFFF;
   --text-gray: #9CA3AF;    /* Texte secondaire "I'm a passionate..." */
 }
+body.light {
+  --bg-dark: #F8F9FA;      
+  --bg-card: #FFFFFF;  
+  --gradient-purple-1: #818CF8; /* +20% luminosité */
+  --gradient-purple-2: #6366F1; 
+  --accent-btn: #818CF8;    
+  --text-white: #050814;   /* texte devient noir */
+  --text-gray: #4B5563;    /* gris plus foncé */
+}
 
 *{
     margin: 0;
@@ -17,15 +26,17 @@
 header{
     display: flex;
     justify-content: space-between;
+    align-items: center; /* ajouté pour centrer */
     padding: 30px;
    font-family: 'Inter', sans-serif;
    border-bottom: 1px solid black;
    background-color: var(--bg-card);
 }
-header nav{
+header .nav-desktop{ /* j'ai renommé pour cacher sur mobile */
     display: flex;
     gap: 20px;
 }
+
 header nav a{
     text-decoration: none;
     color: var(--text-white);
@@ -42,16 +53,85 @@ header button{
     height: 30px;
     width: 120px;
     background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
-      color: var(--text-white);
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
+    color: var(--text-white);
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
 }
 header button:hover{
     box-shadow:#4F46E5 0 0 15px  
 }
+.header-actions{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#themeToggle{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    background: var(--bg-dark);
+    border: 1px solid var(--gradient-purple-1);
+}
+
+/* HAMBURGER */
+header .hamburger{
+   display: none; 
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 100;
+    border: none;
+    padding: 10px; /* pour zone de clic plus grande */
+}
+header .hamburger span{ /* CORRIGÉ ICI */
+    width: 30px;
+    height: 3px;
+    background: var(--text-white); /* CORRIGÉ : il faut une couleur */
+    transition: 0.5s;
+    display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0; 
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* MENU MOBILE */
+.menu {
+  position: fixed;
+  top: 0;
+  left: -100%; 
+  width: 70%;
+  height: 100vh;
+  background: red;
+  padding: 80px 20px;
+  transition: 0.3s;
+  z-index: 99;
+}
+.menu a {
+  display: block;
+  color: white;
+  padding: 15px 0;
+  text-decoration: none;
+  font-size: 20px;
+}
+.menu.ouvert {
+  left: 0;
+}
+
+
+
 body {
   font-family: 'Inter', sans-serif;
 }
@@ -86,7 +166,7 @@ body {
 .container{
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: var(--text-white);
  
 }
 .text{
@@ -101,42 +181,17 @@ body {
     font-size: 30px;
     
 }
-.typing li {
-    list-style: none;
+
+
+#typingwritter{
+    color:var(--gradient-purple-2);
     font-weight: 500;
     font-size: 55px;
-    color: #4F46E5;
-    position: relative;
-    top: 0;
-    margin-bottom: 1.7rem;
-    animation: writing 10s steps(4) infinite; 
+    border-right: 3px solid #4F46E5; /* curseur */
+    animation: blink 0.8s step-end infinite; /* clignote */
 }
-@keyframes writing{
-    100%{
-        top:-360px;
-    }
-}
-
-.typing li span{
-    position: relative;
-}
-.typing li span::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-left: 2px solid #4F46E5;
-    background: #050814;
-    animation: typing 5s steps(30) infinite;
-}
-@keyframes typing{
-    40%,60%{
-        left:calc(100% + 30px) ;
-    }
-    100%{
-        left: 0;
-    }
+@keyframes blink{
+    50%{ border-color: transparent; }
 }
 
 .hero-contenair p{
@@ -183,8 +238,8 @@ body {
   width: 300%;
 }
 .button .bnt2:hover{
-    background-color: #4C1D95;
-    box-shadow:#4F46E5 0 0 15px  ;
+    background-color: var(--gradient-purple-1);
+    box-shadow:var(--gradient-purple-1) 0 0 15px  ;
 }
 .img{
    width: 350px;
@@ -267,12 +322,12 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    background-color: #0B1120;
+    background-color: var(--bg-dark);
 }
 .projects-container .badge {
     display: inline-flex;
     justify-content: center;
-    background: rgba(99, 102, 241, 0.15);
+    background: var(--bg-dark);
     color: var(--gradient-purple-1);
     padding: 6px 14px;
     border-radius: 20px;
@@ -375,7 +430,7 @@ body {
 
 .contact .badge {
     display: inline-flex;
-    background: rgba(99, 102, 241, 0.15);
+    background: var(--accent-btn);
     color: var(--gradient-purple-1);
     padding: 6px 14px;
     border-radius: 20px;
@@ -604,10 +659,19 @@ body {
     header nav {
         display: none; 
     }
-    header button {
-        width: auto;
-        padding: 8px 16px;
+    header button{
+        
     }
+   
+   header .nav-desktop{ 
+    display: none;
+ } /* cache QUE le menu PC */
+    header button { 
+        display: none; } /* cache le bouton MOI */
+    
+    header .hamburger{ 
+        display: flex; 
+    } /* affiche hamburger */       
 
     .text {
         font-size: 28px;

@@ -14,13 +14,30 @@
             <img src="" alt="">
             <span>Samuel Yoka</span>
         </div>
-        <nav><a href="#acceuille">Acceuille</a>
+        <nav class="nav-desktop">
+            <a href="#acceuille">Acceuille</a>
             <a href="#moi">A propos de moi</a>
             <a href="#projet">Projet</a>
              <a href="#contacte">Me contacter</a>
            
         </nav>
        <a href="#moi"> <button >MOI</button></a>
+       <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+       </button>
+       <div class="header-actions">
+        <button id="themeToggle">🌙</button> <!-- BOUTON DARK MODE -->
+      
+   </div>
+       <nav class="menu" id="menu">
+        <a href="#acceuille">Acceuille</a>
+            <a href="#moi">A propos de moi</a>
+            <a href="#projet">Projet</a>
+             <a href="#contacte">Me contacter</a>
+           
+        </nav>
     </header>
     <section class="hero"> 
         <div class="hero-contenair">
@@ -28,10 +45,8 @@
           <div class="container">
                 <div class="text">Je m'appelle  samuel Yoka</div>
                 <ul class="typing" id="acceuille">
-                    <li><span>Developeur Web</span></li>
-                    <li><span>Administration reseaux</span></li>
-                    <li><span>Designeur Web</span></li>
-                    <li><span>Belle Homme</span></li>
+                    <li><span id="typingwritter"></span></li>
+                   
                 </ul>
             </div>
             <p>je suis pationner du development web specialiste en construction <br> des expereience digital exceptional avec les tehcnologie moderne </p>
@@ -212,7 +227,7 @@
     </div>
     </div>
 </section>
-<script>
+<script src="script.js">
   
 </script>
 </body>
