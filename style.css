@@ -89,22 +89,24 @@ header .hamburger{
     border: none;
     padding: 10px; /* pour zone de clic plus grande */
 }
-header .hamburger span{ /* CORRIGÉ ICI */
-    width: 30px;
+header .hamburger span{
+    width: 28px;
     height: 3px;
-    background: var(--text-white); /* CORRIGÉ : il faut une couleur */
-    transition: 0.5s;
+    background: var(--text-white); /* les 3 barres blanches */
+    transition: 0.4s ease;
     display: block;
+    border-radius: 2px; /* bords arrondis */
 }
 
+/* ANIMATION EN CROIX QUAND ON CLIQUE */
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(6px, 6px);
 }
 .hamburger.active span:nth-child(2) {
-  opacity: 0; 
+  opacity: 0; /* la barre du milieu disparait */
 }
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* MENU MOBILE */
@@ -114,14 +116,14 @@ header .hamburger span{ /* CORRIGÉ ICI */
   left: -100%; 
   width: 70%;
   height: 100vh;
-  background: red;
+  background: var(--bg-dark);
   padding: 80px 20px;
   transition: 0.3s;
   z-index: 99;
 }
 .menu a {
   display: block;
-  color: white;
+  color: var(--text-white);
   padding: 15px 0;
   text-decoration: none;
   font-size: 20px;
@@ -654,49 +656,70 @@ body {
 
 /* Mobile : 600px et moins */
 @media (max-width: 600px) {
-    
-    /* Header : cache le menu pour l'instant */
-    header nav {
-        display: none; 
+
+    header {
+        padding: 20px;
     }
-    header button{
-        
+
+    /* Cache le menu ordinateur */
+    header .nav-desktop {
+        display: none;
     }
-   
-   header .nav-desktop{ 
-    display: none;
- } /* cache QUE le menu PC */
-    header button { 
-        display: none; } /* cache le bouton MOI */
-    
-    header .hamburger{ 
-        display: flex; 
-    } /* affiche hamburger */       
+
+    /* Cache le bouton MOI */
+    header > a {
+        display: none;
+    }
+
+    /* Affiche le hamburger */
+    header .hamburger {
+        display: flex;
+        width: 45px;
+        height: 45px;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+    }
+
+    /* Affiche le bouton thème */
+    .header-actions {
+        display: flex;
+    }
+
+    /* Le menu mobile doit rester disponible */
+    .menu {
+        display: block;
+    }
 
     .text {
         font-size: 28px;
     }
+
     .typing li {
         font-size: 32px;
     }
+
     .button {
-        flex-direction: column; /* boutons l'un sous l'autre */
+        flex-direction: column;
         gap: 15px;
     }
-    .bnt1, .button .bnt2 {
-        width: 100%; /* boutons pleine largeur */
+
+    .bnt1,
+    .button .bnt2 {
+        width: 100%;
     }
 
-    /* Projets passe en 1 colonne */
     .projets-grid {
         grid-template-columns: 1fr;
     }
 
     .icons {
-        flex-wrap: wrap; /* les logos techs passent à la ligne */
+        flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
     }
+
     .cordonner {
         margin-top: 40px;
     }
