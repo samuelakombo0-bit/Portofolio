@@ -1,79 +1,99 @@
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const menu = document.getElementById("menu");
-
-hamburgerBtn.addEventListener("click", function () {
-    menu.classList.toggle("ouvert");
-    hamburgerBtn.classList.toggle("active");});
-
-    console.log('tkt le problème nest pas moi')
-
-    const themeToggle = document.getElementById("themeToggle");
+const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
 
-// 1. Au chargement: on vérifie si l'utilisateur avait déjà choisi un thème
-const savedTheme = localStorage.getItem("theme");
-if(savedTheme === "light"){
-    body.classList.add("light");
-    themeToggle.textContent = "☀️"; // icone soleil
+function setTheme(theme) {
+    const isDark = theme === "dark";
+    body.classList.toggle("dark", isDark);
+    themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Activer le thème clair" : "Activer le thème sombre"
+    );
 }
 
-// 2. Au clic: on inverse le thème
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark" || savedTheme === "light") {
+    setTheme(savedTheme);
+}
+
 themeToggle.addEventListener("click", () => {
-    body.classList.toggle("light");
-    
-    // 3. On sauvegarde le choix
-    if(body.classList.contains("light")){
-        localStorage.setItem("theme", "light");
-        themeToggle.textContent = "☀️";
+    const nextTheme = body.classList.contains("dark") ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+});
+
+function closeMenu(restoreFocus = false) {
+    menu.hidden = true;
+    menu.inert = true;
+    menu.setAttribute("aria-hidden", "true");
+    hamburgerBtn.classList.remove("active");
+    hamburgerBtn.setAttribute("aria-expanded", "false");
+    hamburgerBtn.setAttribute("aria-label", "Ouvrir le menu");
+
+    if (restoreFocus) {
+        hamburgerBtn.focus();
+    }
+}
+
+hamburgerBtn.addEventListener("click", () => {
+    const isOpening = menu.hidden;
+
+    if (isOpening) {
+        menu.hidden = false;
+        menu.inert = false;
+        menu.setAttribute("aria-hidden", "false");
     } else {
-        localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "🌙";
+        closeMenu();
+    }
+
+    hamburgerBtn.classList.toggle("active", isOpening);
+    hamburgerBtn.setAttribute("aria-expanded", String(isOpening));
+    hamburgerBtn.setAttribute(
+        "aria-label",
+        isOpening ? "Fermer le menu" : "Ouvrir le menu"
+    );
+});
+
+menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => closeMenu());
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.hidden) {
+        closeMenu(true);
     }
 });
 
-// là je fais maintenant la machine a ecrire en js 
-
-const typewriterElement = document.getElementById('typingwritter');
-
-let metier = ["Développeur web", "Designer", "Étudiant L3"];
-
-let indexMots = 0;
-let indexLettre = 0;
-
-let entrainEffacer = false;
-
-let vitesse = 150;
-
-function ecrire() {
-    const motsactuel = metier[indexMots];
-
-    if (!entrainEffacer) {
-        typewriterElement.textContent = motsactuel.substring(0, indexLettre + 1);
-        indexLettre++;
-        vitesse = 120;
-
-        if (indexLettre === motsactuel.length) {
-            entrainEffacer = true;
-            vitesse = 2000;
-        }
-    } else {
-        typewriterElement.textContent = motsactuel.substring(0, indexLettre - 1);
-        indexLettre--;
-        vitesse = 60;
-
-        if (indexLettre === 0) {
-            entrainEffacer = false;
-            indexMots++;
-            vitesse = 500;
-
-            if (indexMots === metier.length) {
-                indexMots = 0;
-            }
-        }
+document.addEventListener("click", (event) => {
+    if (
+        !menu.hidden &&
+        !menu.contains(event.target) &&
+        !hamburgerBtn.contains(event.target)
+    ) {
+        closeMenu();
     }
+});
 
-    setTimeout(ecrire, vitesse);
+const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
+if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const revealTargets = document.querySelectorAll("[data-reveal]");
+    body.classList.add("reveal-enabled");
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    revealTargets.forEach((element, index) => {
+        element.style.setProperty("--reveal-delay", `${(index % 3) * 90}ms`);
+        revealObserver.observe(element);
+    });
 }
-
-ecrire();
-
